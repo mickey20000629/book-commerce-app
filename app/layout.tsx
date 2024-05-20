@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "./componets/Header";
+import Header from "./components/Header";
 
 const noteSansJP = Noto_Sans_JP({ subsets: ["latin"], weight: ["400"] });
 

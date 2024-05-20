@@ -1,6 +1,6 @@
 "use client";
 
-import Book from "./componets/Book";
+import Book from "./components/Book";
 
 // 疑似データ
 const books = [
