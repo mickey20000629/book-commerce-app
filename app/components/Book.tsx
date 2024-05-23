@@ -5,6 +5,7 @@ import Link from "next/link";
 import { BookType } from "../types/types";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 type BookProps = {
   book: BookType;
@@ -15,6 +16,7 @@ const Book = ({ book }: BookProps) => {
   const [showModal, setShowModal] = useState(false);
   const { data: session } = useSession();
   const user = session?.user;
+  const router = useRouter();
 
   const handlePurchaseClick = () => {
     setShowModal(true);
@@ -28,6 +30,7 @@ const Book = ({ book }: BookProps) => {
     if (!user) {
       setShowModal(false);
       //ログインページへリダイレクト
+      router.push("/login");
     } else {
       //Stripeで決済する
     }
