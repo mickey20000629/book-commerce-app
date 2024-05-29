@@ -9,13 +9,14 @@ import { useRouter } from "next/navigation";
 
 type BookProps = {
   book: BookType;
+  isPurchased: boolean;
 };
 
 // eslint-disable-next-line react/display-name
-const Book = ({ book }: BookProps) => {
+const Book = ({ book , isPurchased}: BookProps) => {
   const [showModal, setShowModal] = useState(false);
   const { data: session } = useSession();
-  const user = session?.user;
+  const user: any = session?.user;
   const router = useRouter();
 
   const startCheckout = async () => {
@@ -28,6 +29,8 @@ const Book = ({ book }: BookProps) => {
           body: JSON.stringify({
             title: book.title,
             price: book.price,
+            userId: user.id,
+            bookId: book.id,
           }),
         }
       );

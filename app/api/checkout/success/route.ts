@@ -11,12 +11,14 @@ export async function POST(request: Request, response: Response) {
   try {
     const session = await stripe.checkout.sessions.retrieve(sessionId);
 
-    const exsitingPurchase = prisma.purchase.findFirst({
+    const exsitingPurchase = await prisma.purchase.findFirst({
       where: {
         userId: session.client_reference_id!,
-        bookId: session.metadata?.bookId,
+        bookId: session.metadata?.bookId!,
       },
     });
+
+
     if (!exsitingPurchase) {
       const purchase = await prisma.purchase.create({
         data: {
