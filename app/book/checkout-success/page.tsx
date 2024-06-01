@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
 const PurchaseSuccess = () => {
-  const [bookUrl, setBookUrl] = useState(null);
+  const [bookUrl, setBookUrl] = useState();
   const searchParams = useSearchParams();
   const sessionId = searchParams.get("session_id");
   // console.log(sessionId);

@@ -3,6 +3,7 @@ import Book from "./components/Book";
 import { getAllBooks } from "./lib/microcms/client";
 import { BookType } from "./types/types";
 import { nextAuthOptions } from "./lib/next-auth/option";
+import { Purchase, User } from "@prisma/client";
 
 // 疑似データ
 // const books = [
@@ -58,19 +59,20 @@ import { nextAuthOptions } from "./lib/next-auth/option";
 export default async function Home() {
   const { contents } = await getAllBooks();
   const session = await getServerSession(nextAuthOptions);
-  const user: any = session?.user;
+  const user = session?.user as User;
 
-  let purchaseBookIds: any;
+  let purchaseBookIds: string[];
 
   if (user) {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/purchases/${user.id}`
+      `${process.env.NEXT_PUBLIC_API_URL}/purchases/${user.id}`,
+      { cache: "no-store" }
     );
     const purchasesData = await response.json();
     // console.log(purchasesData);
 
-    const purchaseBookIds = purchasesData.map(
-      (purchaseBook: any) => purchaseBook.bookId
+    purchaseBookIds = purchasesData.map(
+      (purchaseBook: Purchase) => purchaseBook.bookId
     );
   }
   return (
@@ -83,7 +85,7 @@ export default async function Home() {
           <Book
             key={book.id}
             book={book}
-            isPurchased={purchaseBookIds.includes(book.id)}
+            isPurchased={purchaseBookIds?.includes(book.id)}
           />
         ))}
       </main>
