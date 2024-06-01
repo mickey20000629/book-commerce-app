@@ -1,9 +1,9 @@
 import { getServerSession } from "next-auth";
 import Book from "./components/Book";
 import { getAllBooks } from "./lib/microcms/client";
-import { BookType, Purchase } from "./types/types";
+import { BookType, Purchase, User } from "./types/types";
 import { nextAuthOptions } from "./lib/next-auth/option";
-import { User } from "@prisma/client";
+
 
 // 疑似データ
 // const books = [
