@@ -1,8 +1,7 @@
 import { getServerSession } from "next-auth";
 import Image from "next/image";
 import { nextAuthOptions } from "../lib/next-auth/option";
-import { User } from "@prisma/client";
-import { BookType, Purchase } from "../types/types";
+import { BookType, Purchase, User } from "../types/types";
 import { getDetailBook } from "../lib/microcms/client";
 import PurchaseDetailBook from "../components/PurchaseDetailBook";
 
