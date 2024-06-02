@@ -8,11 +8,9 @@ const PurchaseSuccess = () => {
   const [bookUrl, setBookUrl] = useState();
   const searchParams = useSearchParams();
   const sessionId = searchParams.get("session_id");
-  // console.log(sessionId);
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log(sessionId);
       if (sessionId) {
         try {
           const res = await fetch(

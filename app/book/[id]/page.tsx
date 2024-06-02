@@ -4,7 +4,6 @@ import React from "react";
 
 const DetailBook = async ({ params }: { params: { id: string } }) => {
   const book = await getDetailBook(params.id);
-  console.log(book);
 
   return (
     <div className="container mx-auto p-4">
